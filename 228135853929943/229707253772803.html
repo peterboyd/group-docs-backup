@@ -1,0 +1,36 @@
+TITLE: Remove/Uninstall Linux Ubuntu and reclaim space
+
+<br><br><p><strong>Remove/Uninstall Linux Ubuntu and reclaim space</strong></p>
+<p>Linux Ubuntu is wonderful, regularly updated, and it&#039;s free! Nevertheless you may wish to remove it at some stage. Removing Ubuntu and regaining its disk space is quick and painless.</p>
+<p><strong>Return boot control to Windows</strong></p>
+<ol><li>
+<p><strong>Bootup any Windows 7/Vista installation DVD</strong>or even from NeoSmart&#039;s freeWindows 7 System Recovery Disk.</p>
+It must be a 64-bit version if a 64-bit Windows is installed. 
+<ul><li>Press a key when you see<strong>Press any key to boot from a CD or DVD</strong>.</li>
+<li>Select your<strong>Time...</strong>and click<strong>Next</strong>.</li>
+<li>
+<p>Select<strong>Repair your computer</strong>(bottom left of the<strong>Install now</strong>screen).</p>
+An automatic check of your system may run.</li>
+<li>
+<p>In<em>System Recovery Options</em>click<strong>Command Prompt</strong>.</p>
+<p>Type in (and press ENTER) - it&#039;s not case-sensitive</p>
+<p>BOOTREC /FIXMBR</p>
+EXIT</li>
+</ul></li>
+<li>Now click<strong>Restart</strong>and remove the DVD or CD.</li>
+</ol><p>Windows 7 will boot normally and without any boot menu if none existed initially.</p>
+<p><strong>Now reclaim the hard disk space used by Linux</strong></p>
+<ol><li>First make sure Windows controls the startup (see previous item).</li>
+<li>
+<p>Boot to Windows 7</p>
+and open<strong>Disk Management</strong>(right-click Computer, select Manage, click Disk Management). 
+<ul><li>Right-click the<strong>Swap</strong>partition, select<strong>Delete Volume...</strong>, click<strong>Yes</strong>.</li>
+<li>Right-click the<strong>Linux</strong>partition, select<strong>Delete Volume...</strong>, click<strong>Yes</strong>.</li>
+<li>Right-click the<strong>Swap</strong>partition, select<strong>Delete Partition</strong>, click<strong>Yes</strong>- required for Logical partitions only.</li>
+<li>Right-click the<strong>Linux</strong>partition, select<strong>Delete Partition</strong>, click<strong>Yes</strong>- required for Logical partitions only.</li>
+<li>
+<p>Right-click the<strong>partition</strong>to the left of<strong>Unallocated</strong>, select<strong>Extend Volume...</strong>,</p>
+<p>and click<strong>Next</strong>to use the maximum space for Windows, and then<strong>Finish</strong>.</p>
+Alternatively, create a new partition in the Unallocated space and Format it.</li>
+</ul></li>
+</ol><p>In another a few seconds you will have all the Linux space back in Windows 7.</p>
