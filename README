@@ -1,3 +1,69 @@
 This git repo is for storing the Public Documents of the FB groups:
 - Linux
 - Linux (tech support)
+
+
+
+
+Setting up your local git repo:
+-------------------------------
+
+1. Install the necessary software. For Ubuntu/Mint:
+    sudo apt-get install git-core git-gui git-doc
+
+2. Create an ssh keypair if you do not have one already:
+    ssh-keygen -t rsa -C "your_email@youremail.com OR Your_nickname"
+
+3. Upload your ssh public key (the one ending in .pub in your ~/.ssh folder)
+   to your github account -> https://github.com/account/ssh
+
+4. Create a folder on your PC where you will keep your local git repo:
+    mkdir ~/Projects
+
+5. Clone the remote repo to your local repo:
+    cd ~/Projects
+    git clone git@github.com:peterboyd/group-docs-backup.git
+
+6. Add some info and config options to the repo's config:
+    git config user.name "Firstname Lastname OR YOUR_NICKNAME_USED_FOR_THE_SSH_KEY"
+    git remote add origin git@github.com:peterboyd/group-docs-backup.git
+
+7. Now you can proceed to "Using the repo"
+
+
+
+
+Using the repo (this is done after setting up the local git repo):
+------------------------------------------------------------------
+
+1. EVERY TIME BEFORE updating the docs with the python scrypt,
+   first update the git repo:
+    cd ~/Projects/group-docs-backup.git
+    git pull
+
+2. Run the update documents script:
+    ./group-docs-backup.py
+
+    First time it will open your browser and ask to authenticate and allow the
+    script to read Groups and work offline (needed so authentication is not done
+    everytime you run the script). No personal info is collected. The authentication
+    is done by facebook alone.
+    If everything runs smoothly the script ends with the "Job done." message.
+
+3. Check if any of the group documents were changed by:
+    git status
+
+4. If something is changed:
+    - add the changes:
+        git add .
+
+    - commit them to local repo using any message you like (for example "Updated docs"):
+        git commit -m "Updated docs"
+
+    - push the changes to the remote repo:
+        git push
+
+5. If nothing is changed, no need to push to remote repo
+
+NOTE: Everything from steps 3 and 4 may be done using a GUI - "git-cola" or "gitg"
+      Though the steps are the same: status -> add (stage) -> commit -> push to remote

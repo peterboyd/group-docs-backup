@@ -1,7 +1,7 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 #
-#    group-docs-backup - The main application.
+#    group-docs-backup.py - The main application.
 #
 #    Copyright 2012 - Peter Boyd
 #
