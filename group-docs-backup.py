@@ -81,6 +81,7 @@ def _get_url(path, args=None):
     args = args or {}
     if ACCESS_TOKEN:
         args['access_token'] = ACCESS_TOKEN
+
     return 'https://graph.facebook.com'+str(path)+'?'+urlencode(args)
 
 class _RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
@@ -132,7 +133,7 @@ def authenticate():
         try:
             data = json.loads(open(LOCAL_FILE).read())
         except:
-            print "Local file empty. We need re-authentication..."
+            print "Local Facebook Authorisation file problem. We need re-authentication..."
             try:
                 os.remove(LOCAL_FILE)
             except:
@@ -168,7 +169,24 @@ def graph(groupID, path, params=None):
 
     """
     print "\nGeting Docs data for Group ID: %s..." % groupID
-    return json.load(urllib2.urlopen(_get_url(path, args=params)))
+
+    try:
+        response = urllib2.urlopen(_get_url(path, args=params))
+
+    except urllib2.HTTPError, e:
+        # If we have problems with Auth, or we are not members of the group
+        # we get 400 error, but still he have a json response, so pass on
+        if e.code == 400:
+            response = e
+        else:
+            raise
+
+    except URLError, e:
+        # We may have some net problems so handle them?
+        print e.reason
+        raise
+
+    return json.load(response)
 
 
 
@@ -182,6 +200,8 @@ def main():
         - writes every doc with the name ID.html
         - prompts for adding to git, hg etc
     """
+    global ACCESS_TOKEN
+
     authenticate()
 
     for gid in GROUPS_ID:
@@ -196,7 +216,30 @@ def main():
             else:
                 print "\nCreated folder for Group ID: %s" % gid
 
-        doc = graph(gid, "/%s/docs" % gid, {'fields':'id,subject,message'})['data']
+        json_data = graph(gid, "/%s/docs" % gid, {'fields':'id,subject,message'})
+
+        while 'error' in json_data.keys():
+            print "Authorisation problem: " + str(json_data['error'])
+            print "Trying to reauthorise the application on Facebook..."
+
+            try:
+                os.remove(LOCAL_FILE)
+            except:
+                print  "Error deleting: %s" % LOCAL_FILE
+                print  sys.exc_info()
+
+            ACCESS_TOKEN = None
+            authenticate()
+            json_data = graph(gid, "/%s/docs" % gid, {'fields':'id,subject,message'})
+
+        doc = json_data['data']
+
+        if not doc: # If data is empty, it means we are not allowed to read group docs
+            print "You are not Authorised to read the Docs section of the Group with ID: %s" % gid
+            print "No documents will be downloaded for this group!"
+            print "Go to Facebook and join the group first please."
+
+
         for entry in doc:
             try:
                 f = open(GROUP_DIR + '/' + entry['id'] + '.html','w')
