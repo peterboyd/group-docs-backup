@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Installing Software in Debian Based Systems (Ubuntu, Linux Mint etc)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Installing Software in Debian Based Systems (Ubuntu, Linux Mint etc)
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>Newcomers in Linux are often confused about how to install software, applications and add-ons in their system. Following the traditional method of Windows, they search the software in the Internet and end up with .tar.gz files that are difficult to install for a newbie. This guide aims to help people new with Linux to install applications on their computer in a easier and beginner friendly way.</p>
+<p> </p>
+<p>Application installation in Linux is easier than you think.. in fact, its comparable to software installation in recent mobile environment as Apple app store, Nokia store, Android market etc. In such environments, there is a single application that manages all installation and uninstallation of applications. Similarly, we have a software center in Ubuntu that manages the installation and uninstallations of applications and add-ons.</p>
+<p> </p>
+<p>Many windows users think that installation in Linux is similar to windows, i.e., search the file over the internet, download it, get the setup file and execute it. This will install the application in their system. This is not entirely true in Linux, though apps can be installed in that way too. In linux, we store all the &quot;setup&quot; files of apps often in a single website, which is called repository. Here you can access/install/uninstall/know info of the apps using a program called package manager, which is apt-get in ubuntu, yum in fedora etc. You issue simple commands that automatically download the files of apps from the repository and install it in your machine.</p>
+<p> </p>
+<p>For those who fear the command line, Ubuntu has a wonderful GUI of their package manager in the form of software center. Here you can search the applications you need, read their reviews, rate it, download/install/uninstall it and do even more. The software center stores all the info of the setup files, (which is known as packages in Linux world), in your computer, known as &quot;cache&quot;. As software is updated everyday, the cache of your PC may get outdated and you many need to refresh the cache to access new and updated software. Often it may happen that the software you need is not available in the official repositories of your distribution. at that time, you may need to add it in form of &quot;ppa&quot; to make it availiable to install. You can search more about this things in the internet to learn more.</p>
+<p> </p>
+<p>A software may depend on other files and libraries for its proper execution, which is known as its dependencies. You may often see that other from the application you request, it may also download some extra files as depencies of your program.</p>
+<p> </p>
+<p><strong>Updating Software Cache</strong></p>
+<p> </p>
+<p>As said earlier, your package manager stores all the information about software in repositories locally as cache. It may so happen that the cache gets outdated with time. So the first thing you need to do before installing software is updating the cache. You can issue a single command for this</p>
+<p> </p>
+<p><em>sudo apt-get update</em></p>
+<p> </p>
+<p>You dont need to update the cache before instalation of every software, but its highly recommended to update it on a regular basis, as you will not get new updates if you dont update your software cache.</p>
+<p> </p>
+<p><strong>Searching For Packages</strong></p>
+<p> </p>
+<p>To search for software, issue this command</p>
+<p> </p>
+<p><em>apt-cache search [search term 1] [search term 2] … [search term n]</em></p>
+<p> </p>
+<p><strong>Getting More Information about a package</strong></p>
+<p> </p>
+<p><em>apt-cache show &lt;package_name&gt;</em></p>
+<p> </p>
+<p>This command shows the description of package &lt;package_name&gt; and other relevant information including version, size, dependencies and conflicts.</p>
+<p> </p>
+<p><strong>Installing package(s)</strong></p>
+<p> </p>
+<p>To install a package/software/application, issue</p>
+<p> </p>
+<p><em>sudo apt-get install [package name 1] [package name 2] … [package name n]</em></p>
+<p><em></em></p>
+<p><strong> </strong></p>
+<p><strong>Removing Packages</strong></p>
+<p> </p>
+<p>If you want to get rid of a program, you can uninstall its associated packages.</p>
+<p> </p>
+<p><em>sudo apt-get remove [package name 1] [package name 2] … [package name n]</em></p>
+<p> </p>
+<p>If you want to get rid of the configuration files and associated directories (usually in the user’s home directory), you’ll want to add the purge option:</p>
+<p> </p>
+<p><em>sudo apt-get remove –purge [package name 1] [package name 2] … [package name n]</em></p>
+<p> </p>
+<p>Most of the time, you can just choose the core package and the associated ones will be removed as well. If it doesn’t, you can use the following command:</p>
+<p> </p>
+<p><em>sudo apt-get autoremove</em></p>
+<p> </p>
+<p><strong>Upgrading software</strong></p>
+<p> </p>
+<p>Make sure you update the cache by following the method above. Then issue this single command to update your whole system.</p>
+<p> </p>
+<p><em>sudo apt-get upgrade</em></p>
+<p> </p>
+<p>If you want only few packages to update rather than the whole system</p>
+<p> </p>
+<p><em>sudo apt-get upgrade [package name 1] [package name 2] … [package name n]</em></p>
+<p> </p>
+<p><strong>Adding More Repositories</strong></p>
+<p> </p>
+<p>Often it may happen that the software you need is not availiable in the official repositories of your distro. In that circumstances, to install software, you may need to add a PPA. PPA in the Ubuntu (and most derivatives) context is &quot;Personal package archive&quot;. These &#039;archives&#039; are Ubuntu&#039;s way to add extra packages (or packages that are in the main Ubuntu repos but are newer versions) to the system. These packages are user(or team) maintained and generally are safe to be used... But of course they can give you some problems like bugs etc sometimes...</p>
+<p> </p>
+<p>You add them using your package manager source config like this:</p>
+<p> </p>
+<p><em>sudo add-apt-repository ppa:name/ppa</em></p>
+<p> </p>
+<p>Some of the most prominent PPA&#039;s:</p>
+<p>WINE: https://launchpad.net/~ubuntu-wine/+archive/ppaXorg</p>
+<p>propriety graphic drivers: https://launchpad.net/~ubuntu-x-swat/+archive/x-updates</p>
+<p> </p>
+<p>Generally... When you need some package that is not available in the Ubuntu sources... (or it is an old version there)... you should go to the package home page... then find the downloads... and there you look for Ubuntu supported downloads... If such exist... usually the have a description of their own PPA.. so you add the PPA described there... that is secure enough as a whole...</p>
+<p> </p>
+<p><strong>Resolving Unmet Dependencies</strong></p>
+<p> </p>
+<p>If you get errors like &quot;The following packages have unmet dependencies&quot;, you can install all dependencies at once by issuing this command</p>
+<p> </p>
+<p><em>sudo apt-get -f install</em></p>
+<p> </p>
+<p><strong>Resources</strong></p>
+<p>https://help.ubuntu.com/community/AptGet/Howto</p>
+<p>http://www.howtogeek.com/63997/how-to-install-programs-in-ubuntu-in-the-command-line/</p>
+        </div>
+    </body>
+</html>
