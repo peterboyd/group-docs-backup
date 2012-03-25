@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>openSuse: How to use Yast to install applications</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             openSuse: How to use Yast to install applications
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p><strong>Installing software on openSuse using Yast</strong></p>
+<p>The process of installing software is very simple. Start YaST by  selecting it from the menu under System, or by using the run command  dialog (press Alt+F2) and typing <strong>yast</strong>. You will be required to enter your root password. Start the <strong>Software Management</strong> module by selecting it from the <strong>Software</strong> tab in the <strong>YaST Control Center</strong>.</p>
+<p>Search for the required package, and YaST will display a list of  all matching packages on the right. You can search for package names or  you can search in package descriptions. There are also filters available  that enable you to browse certain categories of packages.</p>
+<p>Select the packages that you wish to install and click &#039;Accept&#039;. If  some additional packages are required for the selected packages to be  installed, YaST will prompt for confirmation. Once confirmed, YaST will fetch the packages from installation repositories and install them.</p>
+<p> </p>
+<p> </p>
+<p><strong>Software availability</strong></p>
+<p>The number of packages available in YaST Software Management depends  on the repositories added. By default you will only have the CDs/DVD or  the official online repositories that you can add during installation. To add additional repositories:</p>
+<ul><li>Start <strong>YaST</strong> by clicking on it under <strong>Software</strong> in your menu or by typing <strong>yast</strong> in the run command box (press Alt+F2).</li>
+<li>Select <em>Software Repositories</em>.</li>
+<li>Click on <em>Add</em>, select <em>Specify URL</em>.</li>
+<li> Then enter a <em>Repository Name</em> and a <em>URL</em>. It&#039;s recommended to copy/paste URLs to avoid typos (you can get repository urls here: <strong>http://en.opensuse.org/Package_repositories</strong> and even more here: <strong>http://en.opensuse.org/Additional_package_repositories</strong> )</li>
+<li>And click &#039;Next&#039;</li>
+</ul><p>Package metadata will be downloaded and parsed - this takes time  depending on mirror speed, your bandwidth, the size of the repository,  the speed of your system.</p>
+<p> </p>
+<p> </p>
+<p><em><strong>NOTES:</strong></em></p>
+<ul><li>You can remove or disable repositories at any time</li>
+<li>In case you have downloaded some RPM files, you can place them in one folder on your pc, then add that folder as a repository in Yast by selecting &quot;<em>local folder</em>&quot; where you&#039;d have selected &quot;specify url&quot; (an easy way of creating your own repository)</li>
+<li>You can also specify to Yast to keep all downloaded installation files from certain repositories. You can later find these under <strong><em>/var/cache/zypp/packages</em></strong> and you&#039;ll be able to copy these to create your own local repository to share with friends, or to use in case you have to reinstall the system.</li>
+<li>openSuse uses the red-hat package management system(rpm) and you can also use the <strong>rpm</strong> command to install/upgrade/uninstall software on your PC.</li>
+</ul>
+        </div>
+    </body>
+</html>
