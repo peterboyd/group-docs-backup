@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Archlinux cheatsheet</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Archlinux cheatsheet
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>Time to show off some love to the favorite distro of the group, isn&#039;t it ??? ;)</p>
+<p> </p>
+<p>Note : Adapted more than possible to beginners ...</p>
+<p> </p>
+<p>Installation guides :</p>
+<p> </p>
+<p>https://wiki.archlinux.org/index.php/Official_Installation_Guide</p>
+<p>http://wiki.archlinux.fr/Installation *french/français*</p>
+<p> </p>
+<p>Less up-to-date installation guides but worth a look :</p>
+<p> </p>
+<p>http://lifehacker.com/5680453/build-a-killer-customized-arch-linux-installation-and-learn-all-about-linux-in-the-process *easier*</p>
+<p>http://willensky.blogspot.ca/2010/01/how-to-setup-arch-linux.html *further install*</p>
+<p> </p>
+<p><em>Recommanded cheatsheets :</em></p>
+<p> </p>
+<p>http://i.imgur.com/JB6N5.jpg - really worth a look</p>
+<p>http://img.docstoccdn.com/thumb/orig/14992490.png - adapted in this document</p>
+<p> </p>
+<p><em>Recommanded Aur helpers :</em></p>
+<p> </p>
+<p>Yaourt - Add it by the Archlinux.fr repo</p>
+<p>Packer - Add it by Yaourt</p>
+<p>(Add numbers of packages wanted with spaces between them, don&#039;t edit files if you don&#039;t know what to do)</p>
+<p> </p>
+<p><em>Package management made easy:</em></p>
+<p> </p>
+<p>packer -Sy package1 package2 ... <em>install packages</em></p>
+<p>sudo pacman -U /packagefolder/package = <em>install package offline</em></p>
+<p>sudo pacman -Syy = <em>sync mirrors after pacman.conf/mirrorlist changespacker</em> -Syu = <em>update your system including Aur</em></p>
+<p>packer keyword = <em>search a package</em></p>
+<p>sudo pacman -Q &gt; list.txt = <em>list all installed packages in the current folder</em></p>
+<p>sudo pacman -R package1 package2 ... = <em>remove packages</em></p>
+<p>sudo pacman -Rns package1 package2 ... = <em>remove packages, dependancies, configuration</em></p>
+<p>yaourt -Sy package1 package2 ... --tmp /home/mike/Desktop/Aur = <em>install bigger packages that may be too big for /tmp, don&#039;t forget to empty your /tmp before ...</em></p>
+<p> </p>
+<p><em>Configuration Files :</em></p>
+<p> </p>
+<p><strong>Pacman</strong></p>
+<p>/etc/rc.conf    Main configuration File,           modules, daemons, network./etc/locale.gen     Locale Config</p>
+<p>/etc/makepkg.conf     Makepkg configuarion</p>
+<p>file/etc/pacman.conf    Pacman config</p>
+<p>file/etc/abs.conf     ABS config</p>
+<p>file/etc/mkinitcpio.conf    Initrd cofiguration</p>
+<p>/etc/conf.d/    Daemons configuration/etc/pacman.d/    Mirrors config for pacman</p>
+<p>/etc/rc.d/    Daemons start scripts</p>
+<p> </p>
+<p><strong>Xorg configuration</strong></p>
+<p>pacman -S xorg    Installs xorg</p>
+<p>pacman -Ss xf86-video    List generic  video drivers</p>
+<p>Xorg -configurenvidia-xconfig    Configure a xorg.conf  file [New versions of Xorg should detect everything, install hal with  pacman and then try startx] In order to boot in X you should add a login  manager to the daemons array (GDM, Slim, Kdm), use the startx script or  change the initlevel and login manager in /etc/inittab</p>
+<p> </p>
+<p><strong>Useful man pages:</strong> xorg.conf, inittab, pacman.conf, pacman, makepkg, packer, yaourt, useradd, gpasswd, groups</p>
+<p> </p>
+<p><strong>Useful Groups</strong></p>
+<p>gpasswd -a user group Add user to group</p>
+<p>lp  For printers</p>
+<p>audio    For audio</p>
+<p>optical    Acces to optical drives</p>
+<p>storage   Acces to storage devices</p>
+<p>video    Access to video devices</p>
+<p> </p>
+<p><strong>Other Common Packages</strong></p>
+<p>pacman -S ttf-ms-fonts ttf-dejavu ttf-bitstream-vera    Some fonts</p>
+<p>pacman -S gnome gnome-extra gdm    Installs Gnome, extra apps and the GDM login manager</p>
+<p>pacman -S elinks    Text mode browser</p>
+<p>pacman -S firefox jre flashplugin     Installs Firefox with JRE and Adobe Flash plugins</p>
+<p>pacman -S vimdiff    Useful to check differences betwen files, like a .pacnew config file</p>
+<p>pacman -S alsa-lib alsa-utils    Installs alsa, then run alsaconfig</p>
+<p>pacman -S codecs gstreamer0.10-bad gstreamer0.10-ugly gstreamer0.10-ffmpeg gstreamer0.10-ugly-plugins    Propietary codecs</p>
+<p> </p>
+<p><strong>Links and informations :</strong></p>
+<p>Forum:</p>
+<p>http://bbs.archlinux.org</p>
+<p>Wiki: http://wiki.archlinux.org</p>
+<p>Aur: http://aur.archlinux.org</p>
+<p>IRC: #archlinux, #archlinux-offtopic at Freenode</p>
+<p> </p>
+<p>Use man to get the manual pages, in some cases, a given command may had more than one man page, to acces all of them use &#039;man -a command&#039; or &#039;man N command&#039; if you know wich page it&#039;s.</p>
+<p> </p>
+<p>Search the web, the wiki and forums at any troubles</p>
+<p>Always check .pacnew files</p>
+<p>Always read news and forum before a full system update</p>
+<p>Check logs for important messages and errors (/var/log/)</p>
+<p>Read the PKGBUILD before install any software from AUR</p>
+<p> </p>
+<p>Thanks for reading, please submit suggestions/additions/changes ... if the document seem unclear, for Archlinux beginners, begin with Bridge-Linux Light *website : millertechnologies*, it may seem that I advertise for someone that I know but it seem to me the best Archlinux customisation to begin with and remember that we are here to help if needed, just seek the arch wiki/forums and google before a little, Arch is pretty easy after installation so most of us shouldn&#039;t have much troubles with it ...</p>
+        </div>
+    </body>
+</html>
