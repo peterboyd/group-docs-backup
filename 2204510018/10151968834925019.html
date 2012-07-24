@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weekly Trivia Doc of Fame</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Weekly Trivia Doc of Fame
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p><strong>2012-07-13</strong></p>
+<p>Script to find IPv6 addresses for all network devices that have been assigned an IPv4 address.</p>
+<p> </p>
+<p><strong>Group:</strong> Thomas Johansson</p>
+<p> </p>
+<p>#!/bin/sh</p>
+<p>LIST=&quot;`ip -4 addr show | grep &quot;inet.*global&quot; | awk &#039;&#123;print $NF&#125;&#039;`&quot;</p>
+<p>cat /proc/net/if_inet6 | grep &quot;$LIST&quot; | awk &#039;&#123;print $1&quot;%&quot;$6&#125;&#039;</p>
+<p> </p>
+<p><strong>Admin:</strong> Dalton Miller</p>
+<p> </p>
+<p>#!/bin/bash</p>
+<p>for line in $(ifconfig | grep &#039;^[a-z0-9]&#039; | awk &#039;&#123;print $1&#125;&#039;); do</p>
+<p>if [[ &quot;$(ip addr show dev $line | sed -e&#039;s/^.*inet6 \([^ ]*\)\/.*$/\1/;t;d&#039;)&quot; != &quot;::1&quot; &amp;&amp; &quot;$(ip addr show dev $line | sed -e&#039;s/^.*inet6 \([^ ]*\)\/.*$/\1/;t;d&#039;)&quot; != &quot;&quot; &amp;&amp; &quot;$(ip addr show dev $line | grep -c &#039;inet &#039;)&quot; == &quot;1&quot; ]]; then</p>
+<p>echo -ne $line; echo -ne &#039; &#039;</p>
+<p>ip addr show dev $line | sed -e&#039;s/^.*inet6 \([^ ]*\)\/.*$/\1/;t;d&#039;</p>
+<p>fi</p>
+<p>done</p>
+        </div>
+    </body>
+</html>
