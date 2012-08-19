@@ -17,16 +17,18 @@
 <p>- Corrections</p>
 <p>- Compare desktop managers and windows managers *50% done*</p>
 <p>- Describe distro bases *80% done*</p>
-<p>- Explain Main functionalies like Desktop &amp; window Manager</p>
+<p>- Explain main functionalities like desktop &amp; window manager</p>
 <p>- Explains testing and community repositories safety</p>
 <p> </p>
 <p><strong>1- The distro base type is important :</strong></p>
 <p> </p>
 <p>Packages <em>(Deb, rpm, and others</em>) or sources ...</p>
 <p> </p>
-<p>If you want to update easily and fast, packages are for you, most distros use Debian software packages (Deb) derived from Debian. The other significant package is RPM (red hat package manager) which comes from the Red Hat Linux Distribution but is used by plenty of other distributions.</p>
+<p>If you want to update easily and fast, packages are for you, most distros use Debian software packages (Deb) derived from Debian. These packages are generally installed with a package manager such as dpkg (althought apt-get is a front end).</p>
 <p> </p>
-<p>If you don&#039;t care much about time to update and want pure performance over ease of use, building from source may suit you best. (LFS : Linux From Scratsh , a good book to follow in different language ).</p>
+<p>The other significant package is RPM (red hat package manager) which comes from the Red Hat Linux distribution but is used by plenty of other distributions. RPMs are often managed by a package manager such as YAST or apt-rpm.</p>
+<p> </p>
+<p>If you would rather pick which features you want or don&#039;t want as part of the installed software, you may wish to build from source code. Source packages tend to be in tar.gz files or similar and often require you to unpack the file and run &quot;make&quot; with arguments depending on what you want built. Building from source isn&#039;t always the preferred way of installing software as it is generally a better idea to install something using the official package manager, but in something like linux from scratch or Gentoo (which uses portage to build from source), building from source code is the official way of installation.</p>
 <p> </p>
 <p><strong>2- Base distros to watch :</strong></p>
 <p> </p>
@@ -36,13 +38,15 @@
 <p> </p>
 <p><strong>Debian -</strong> Second oldest distro, base of most others distros, various branches with various ranges of stability. It is capable of using the bsd kernel as well as many others. one of the biggest packages repository build from source with some patching without depending on another distro. not 100% free software endorsed distro but don&#039;t include non-free content in the distro base just by more repositories, support any architecture, release only with there is no bug left so expect the biggest linux stabilty of Debian stable. you could download the repositories on dvds easily, could be build as you wish and customised easily, widely loved on servers</p>
 <p> </p>
+<p><strong>Fedora</strong> - is an RPM-based, general purpose collection of software, including an operating system based on the Linux kernel, developed by the community-supported Fedora Project and sponsored by Red Hat.  Fedora’s flexibility makes it capable of serving as a digital  repository for a variety of use cases. The Fedora Project&#039;s mission is  to lead the advancement of free and open source software and content as a  collaborative community.</p>
+<p> </p>
 <p><strong>Ubuntu -</strong> most widely used distro, debian unstable based, the Linux Mint fork is on a hype, backed by a corporation, focus to be usable by beginners easily, may be critized for the touchscreen like interface of their main distro, release each 6 months with a long term support release each 2 years, massive community that don&#039;t contribute much, supported for 18 months for regular releases, 2-5 years for long term releases that apply only to the main distro, has a 100% free software distro fork, include a package manager where you could buy apps and games, always try to innovate so expect instability mostly on the main distro, the best hardware support out-of-the-box, biggest packages content</p>
 <p> </p>
 <p><strong>Gentoo -</strong> Source based/rolling release distro. Gentoo linux shares a great deal with Arch linux in that you start off with the bare minimum. Unlike Arch linux, Gentoo builds 99% of software from source code, which means if you want to install an application, you have to compile it first. The pro in this is you set USE flags to determine what is compiled and installed on your system which makes Gentoo totally optimized for your system and your hardware. Gentoo linux is capable on running on many different architectures, such as ARM, 64 bit, 32 bit, SPARC, mips, alpha, etc. Gentoo makes use of portage as its package manager which is very flexible and saves the user having to run multiple &quot;make&quot; jobs by hand. By default Gentoo makes use of the Gentoo patched linux kernel, but it can install many other kernels, such as the BSD kernel, xen kernel, vanilla etc.</p>
 <p> </p>
 <p><strong>Linux from scratch -</strong> just a manual to build every part of your setup, expect long compilation times, nearly perfectly optimisable for your hardware, may need a little work after upgrades when you use hardware with proprietary drivers, you build it as you want, very educative experience</p>
 <p> </p>
-<p><strong>Mandriva -</strong> now Mageia, focus for beginners</p>
+<p><strong>Mandriva -</strong> now Mageia, focus for beginnersro</p>
 <p> </p>
 <p><strong>SUSE -</strong> Novell backed corporate distro, you pay for it but it got free derivates, the OpenSUSE fork is said to be one of the best Kde desktop implementation</p>
 <p> </p>
@@ -54,9 +58,11 @@
 <p> </p>
 <p><strong>Slitaz -</strong> older pc distros, 30Mb live cd download, the 1 Gb live dvd come with the repositories, could be run from ram at a blazing speed, most unix like distro</p>
 <p> </p>
+<p><strong>Linux Mint</strong> - One of the  most popular and user friendly distros in the world, Linux Mint is notably fast and low on system resources. It has many repositories  but you can also add more in a similar way to Debian and Ubuntu. Linux Mint can be used by beginners and experts alike. New users may want to try out Linux Mint whereas Expert users may want to try LMDE (Linux Mint Debian Edition) which is more complex and requires more care but it is rolling release and allows for more in depth learning of a Debian system. This distro is perfect for first time linux users.</p>
+<p> </p>
 <p>As long as you stay near theses distros, you will have more support if needed, derivates are acceptable but it&#039;s far better if they are still compatible with the base distro to be usable even if it get discontinued, rolling releases distros are always updated and don&#039;t need releases, derivates from releases without rolling releases will need some patience before you could get new versions ...</p>
 <p> </p>
-<p><strong>3- Archtecture :</strong></p>
+<p><strong>3- Architecture :</strong></p>
 <p> </p>
 <p>Old computers use mostly 32 bits, new pcs of 5 years or less could use 64 bits except some, mobile devices uses arm, old macs use ppc, this could influence you distro choice mostly if you use arm or ppc, Debian and Gentoo support any architecture ...</p>
 <p> </p>
@@ -86,7 +92,7 @@
 <p> </p>
 <p><strong>Lxde -</strong> maked from Xfce code so it, focus on independants lightweight applications, lightweight and very energy efficient, use Openbox WM as backend and you could switch to *box Wms easily when experienced enough with it, fairly new but his code base make it more stable than expected, you could mix apps from it on any desktop without slowing your system much ...</p>
 <p> </p>
-<p><strong>Razor-Qt -</strong> Lightweight, come from Kde with focus on simplicity and ease of use, recommanded to use Openbox with it, fairly new could be less stable but using known code make it more stable than it should ...</p>
+<p><strong>Razor-Qt -</strong> Lightweight, come from Kde with focus on simplicity and ease of use, recommended to use Openbox with it, fairly new could be less stable but using known code make it more stable than it should ...</p>
 <p> </p>
 <p><strong>Sugar -</strong> focus to be usable 5-12 years childs</p>
 <p> </p>
@@ -132,7 +138,9 @@
 <p><strong>Privacy -</strong> tor, truecrypt, *https everywhere*</p>
 <p><strong>Rescue -</strong> gparted, ntfs-3g, clamtk</p>
 <p><strong>Server -</strong> apache, mysql, php, php my admin, webmin</p>
-<p><strong>Voip -</strong> ekiga, skype, asterisk, openvpnMac-like - cairo-dock, awn, docky, slingshot</p>
+<p><strong>Voip -</strong> ekiga, skype, asterisk, openvpn</p>
+<p><strong>Mac-like</strong> - cairo-dock, awn, docky, slingshot</p>
+<p><strong>Virtualization - </strong>Oracle virtualbox, VMware, qemu, xen, kvm</p>
 <p> </p>
 <p><strong>6- When forks are decents :</strong></p>
 <p> </p>
