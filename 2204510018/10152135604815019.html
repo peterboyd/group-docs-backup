@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GENTOO - Tips and Tweaks</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             GENTOO - Tips and Tweaks
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>This document will cover some useful tips and tricks about Gentoo.</p>
+<p>It is a work in progress, so expect more and feel free to add to it or alter it in any way you think is suitable.</p>
+<p> </p>
+<p><strong>Speeding up compilation in Gentoo</strong></p>
+<p><strong>===========================</strong></p>
+<p>One thing that really bothers most Gentoo users, is the time it takes to compile new packages or update the installed ones. So here are some tweaks you may use to speed the process up. Be sure to make a backup  of the files you alter <strong>PRIOR </strong>to any change you make. In the example, we assume that your CPU is a quad core one and is having HT.</p>
+<ol><li>
+<p><strong>Tweaks made to </strong><strong><em>/etc/make.conf </em></strong><strong>. </strong>Check if your config has the listed variables and if so, just replace them with the proposed one. If it doesn&#039;t have them, just add them on a new line.</p>
+<ol><li>
+<p><em>CFLAGS=&quot;-march=native -O2 -pipe&quot;</em></p>
+</li>
+<li>
+<p><em>CXXFLAGS=&quot;$&#123;CFLAGS&#125;&quot; </em></p>
+<p><strong>NOTES: </strong> Using <em>-march=native</em> is best, but it makes impossible to use <em>distcc</em> if the other machines has a different setting and have a different kind of CPU.</p>
+</li>
+<li>
+<p><em>MAKEOPTS=&quot;-j9&quot;</em></p>
+<p><strong>NOTES: </strong>The <em>-j</em> value is calculated as the: <em>Number of CPUs/Cores X 2 (if you have HT) + 1</em>. So for a quad core CPU, if you do not have HT it should be 5 and if you have – 9. Using a higher value may result in worse  performance when it comes to compilation time. This option has nothing to do with the <em>-j/--jobs</em> option of the ebuild command. Please refer to the emerge manual for more info. If you use <em>distcc</em>, the value of <em>-j</em> is calculated the same way, just count all the cores of all the 		CPUs that are available.</p>
+</li>
+<li>
+<p><em>PORTAGE_TMPDIR=&quot;/dev/shm&quot;</em></p>
+<p><strong>NOTES:</strong> This is part of tweak 2 and is here to make all the compilation use a tmpfs, so everything to be speed up. If your RAM is less than 4GB, you&#039;d better not use this tweak and this variable.</p>
+</li>
+<li>
+<p><em>FEATURES=&quot;$&#123;FEATURES&#125;  fail-clean&quot;</em></p>
+<p><strong>NOTES:</strong> This is part of tweak 2 as well and is making all the temp files of the compilation process to be removed when the compilation fails.  This way you preserve your free RAM, but the downside is that you  lose the temp files that may be used for debugging why the compilation failed.</p>
+</li>
+</ol></li>
+<li>
+<p><strong>Tweaks using a tmpfs for the compilation. </strong>You may use these if your RAM is 4GB at least.</p>
+<ol><li>
+<p>You need to have a kernel with <em>swap</em> and <em>Virtual memory file system support</em> enabled. Almost all default kernel configurations have these enabled.</p>
+</li>
+<li>
+<p>Add this line to your <em>/etc/fstab</em> :</p>
+<p><em><strong>shm /dev/shm tmpfs defaults 0 0</strong></em></p>
+<p><em><strong>NOTES:</strong> </em>The <em>defaults</em> option will actually use ½ of your available RAM, so if you have 4GB of RAM only <strong>UP </strong>to 2GB of them will be used for the tmpfs. The process is dynamic, i.e. only the required quantity of RAM is used.</p>
+</li>
+<li>
+<p>Create a<strong> <em>/etc/portage/env/notmpfs.conf </em></strong>file and put inside it this line:</p>
+<p><em><strong>PORTAGE_TMPDIR=&quot;/var/tmp&quot;</strong></em></p>
+<p><strong>NOTES: </strong>This file will be used to tell emerge not to use the tmpfs for large applications that need much more free disk space for compilation... like Firefox, Libreoffice, kdelibs etc.</p>
+</li>
+<li>
+<p>Create a<strong> <em>/etc/portage/package.env </em></strong>file. This file will be used to put one DEPEND atom per line followed by name of the above environment file. By &quot;DEPEND atom&quot; I mean the name of the package as used in portage. For example add these known big compilation disk space “eaters”:</p>
+<p><em><strong>www-client/firefox 	notmpfs.conf</strong></em></p>
+<p><em><strong>kde-base/kdelibs notmpfs.conf</strong></em></p>
+<p><em><strong>app-office/libreoffice notmpfs.conf</strong></em></p>
+<p><em><strong>mail-client/thunderbird notmpfs.conf</strong></em></p>
+</li>
+<li>
+<p><strong>YOU ARE DONE WITH THE TWEAKS. </strong>After rebooting the emerge of all packages should be a way faster than before.</p>
+</li>
+</ol></li>
+</ol>
+        </div>
+    </body>
+</html>
