@@ -29,7 +29,7 @@
 </li>
 <li>
 <p><em>MAKEOPTS=&quot;-j9&quot;</em></p>
-<p><strong>NOTES: </strong>The <em>-j</em> value is calculated as the: <em>Number of CPUs/Cores X 2 (if you have HT) + 1</em>. So for a quad core CPU, if you do not have HT it should be 5 and if you have – 9. Using a higher value may result in worse  performance when it comes to compilation time. This option has nothing to do with the <em>-j/--jobs</em> option of the ebuild command. Please refer to the emerge manual for more info. If you use <em>distcc</em>, the value of <em>-j</em> is calculated the same way, just count all the cores of all the 		CPUs that are available.</p>
+<p><strong>NOTES: </strong>The <em>-j</em> value is calculated as the: <em>Number of CPUs/Cores X 2 (if you have HT) + 1</em>. So for a quad core CPU, if you do not have HT it should be 5 and if you have – 9. Using a higher value may result in worse  performance when it comes to compilation time. This option has nothing to do with the <em>-j/--jobs</em> option of the ebuild command. Please refer to the emerge manual for more info. If you use <em>distcc</em>, the value of <em>-j</em> is calculated the same way, just count all the cores of all the CPUs that are available.</p>
 </li>
 <li>
 <p><em>PORTAGE_TMPDIR=&quot;/dev/shm&quot;</em></p>
@@ -66,7 +66,54 @@
 <p><strong>YOU ARE DONE WITH THE TWEAKS. </strong>After rebooting the emerge of all packages should be a way faster than before.</p>
 </li>
 </ol></li>
-</ol>
+</ol><p> </p>
+
+<p> </p>
+<p> </p>
+<p><strong>Updating your Gentoo</strong></p>
+<p><strong>=================</strong><strong> </strong></p>
+<p>There are a lot of ways to update your Gentoo, but having a step by step guidance to follow is a good thing. Here I will describe my way of doing it. It is nothing special, but may help some novice Gentoo users:</p>
+<ol><li>
+<p><strong>Tweaks made to </strong><strong><em>/etc/make.conf </em></strong><strong>. </strong>This 	is a one time config. Check if your config has the listed variables and if so, just replace them with the proposed one. If it doesn&#039;t 	have them, just add them on a new line.</p>
+<ol><li>
+<p><em>ACCEPT_LICENSE=&quot;*&quot;</em></p>
+<p><strong><strong>NOTES: </strong></strong>Add this so you would not be bothered by some license agreement acceptance when you install/update certain packages.</p>
+</li>
+<li>
+<p><em>FEATURES=&quot;$&#123;FEATURES&#125; parallel-fetch&quot;</em></p>
+<p><strong><strong>NOTES: </strong></strong>This helps speeding up fetching the sources for the ebuilds that would be emerged while the compilation is running. You can always see the progress of the fetching using the command <em>“tail -f /var/log/emerge-fetch.log”</em></p>
+</li>
+<li>
+<p><em>EMERGE_DEFAULT_OPTS=&quot;$&#123;EMERGE_DEFAULT_OPTS&#125; --keep-going y&quot;</em></p>
+<p><strong><strong>NOTES: </strong></strong>This is a very useful option that will be automatically added to every emerge command you issue. It helps the emerge to go on with the next packages if a package fails to build. By default if a package fails to build the emerge process stops issuing the error. This way if you have a lot of packages to update, you will need to stay close to the terminal  and watch for such errors. But if you use <em>-keep-going y, </em>the emerge process will continue till the end, and at the end it will show you which packages failed to build, so then you can try debugging/fixing them.</p>
+</li>
+</ol></li>
+<li>
+<p>Issue <strong><em><strong>emerge –sync </strong></em></strong><em></em>and wait till it ends. Sometimes at the end it says you should update your portage package. If so do it by: <strong><em><strong>emerge 	portage. </strong></em></strong><em></em>Do everything else that emerge tells you should do.</p>
+</li>
+<li>
+<p>Issue <strong><em><strong>emerge -avuND world </strong></em></strong><strong> . </strong>Review all the changes that will be done and hit Enter to 	continue. If there are some packages that have a fetch restriction, you need to download them manually first, so answer “NO” to emerge, download the needed package sources, put them in <em>/usr/portage/distfiles</em> and run <strong><em>emerge -avuND world </em></strong>again.</p>
+</li>
+<li>
+<p>When the previous command ends, review the output and commit any changes described by portage that should be done. Do not worry if there are some failed packages. Just take note of them and go to the next step.</p>
+</li>
+<li>
+<p>Issue <strong><em><strong>revdep-rebuild -i -v -- -a . </strong></em></strong>This way you will check your system for consistency. It doesn&#039;t matter if step 3 ended with no errors. And if in step 4 you have problem packages that have not compiled, this step may help when trying to compile them again.</p>
+<p><strong><strong>NOTES: </strong></strong>In order to use this command, you need to have <em>app-portage/gentoolkit </em>installed. 	So if you do not have it do: <strong>emerge 	app-portage/gentoolkit</strong> PRIOR to use it.</p>
+</li>
+<li> <ol><li>
+<p><strong>If  step 5 ends ok AND you had some packages that failed to build, </strong>do the <strong><em><strong>emerge -avuND world </strong></em></strong> AGAIN<strong>. </strong>Most of the problems are fixed this way. But you may need to go through step 5 and 6 a couple of times. If all this doesn&#039;t help, the problem can be resolved EITHER by visiting <strong>http://bugs.gentoo.org </strong>and trying to find info about that specific error OR by masking the problematic version. The masking is done as you put an entry in <em>/etc/portage/package.mask . </em>For example if the offending package is <em>dev-lang/gnat-gcc-4.3.6, </em>you put in the file this line:</p>
+<p><strong><em><strong>=dev-lang/gnat-gcc-4.3.6</strong></em></strong></p>
+</li>
+<li>
+<p><strong><em><strong>If step 5 ends ok AND you had no failed packages... You are done with the update.</strong></em></strong></p>
+</li>
+</ol></li>
+</ol><p> </p>
+<p> </p>
+<p>NEXT TWEAK</p>
+<p>=========</p>
+<p>TO BE CONTINUED....</p>
         </div>
     </body>
 </html>
