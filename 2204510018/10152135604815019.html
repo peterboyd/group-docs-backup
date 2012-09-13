@@ -67,7 +67,6 @@
 </li>
 </ol></li>
 </ol><p> </p>
-
 <p> </p>
 <p> </p>
 <p><strong>Updating your Gentoo</strong></p>
@@ -89,7 +88,7 @@
 </li>
 </ol></li>
 <li>
-<p>Issue <strong><em><strong>emerge –sync </strong></em></strong><em></em>and wait till it ends. Sometimes at the end it says you should update your portage package. If so do it by: <strong><em><strong>emerge 	portage. </strong></em></strong><em></em>Do everything else that emerge tells you should do.</p>
+<p>Issue <strong><em><strong>emerge –sync </strong></em></strong><em> </em>and wait till it ends. Sometimes at the end it says you should update your portage package. If so do it by: <strong><em><strong>emerge 	portage. </strong></em></strong><em> </em>Do everything else that emerge tells you should do.</p>
 </li>
 <li>
 <p>Issue <strong><em><strong>emerge -avuND world </strong></em></strong><strong> . </strong>Review all the changes that will be done and hit Enter to 	continue. If there are some packages that have a fetch restriction, you need to download them manually first, so answer “NO” to emerge, download the needed package sources, put them in <em>/usr/portage/distfiles</em> and run <strong><em>emerge -avuND world </em></strong>again.</p>
@@ -98,7 +97,9 @@
 <p>When the previous command ends, review the output and commit any changes described by portage that should be done. Do not worry if there are some failed packages. Just take note of them and go to the next step.</p>
 </li>
 <li>
-<p>Issue <strong><em><strong>revdep-rebuild -i -v -- -a . </strong></em></strong>This way you will check your system for consistency. It doesn&#039;t matter if step 3 ended with no errors. And if in step 4 you have problem packages that have not compiled, this step may help when trying to compile them again.</p>
+<p>You should now issue <strong>emerge -cav </strong>to perform a depclean following an update. This will launch <strong>emerge --depclean --ask --verbose</strong> which will remove reduntant packages. This will unmerge packages with no reverse dependencies (often as a result of disabling a use flag) to prevent undeeded packages from being on your system. The packages to be unmerged must be carefully reviewed before accepting as it can remove needed packages with no dependencies (such as nano). </p>
+<p> </p>
+<p>You should now issue <strong><em><strong>revdep-rebuild -i -v -- -a . </strong></em></strong>This way you will check your system for consistency. It doesn&#039;t matter if step 3 ended with no errors. And if in step 4 you have problem packages that have not compiled, this step may help when trying to compile them again.</p>
 <p><strong><strong>NOTES: </strong></strong>In order to use this command, you need to have <em>app-portage/gentoolkit </em>installed. 	So if you do not have it do: <strong>emerge 	app-portage/gentoolkit</strong> PRIOR to use it.</p>
 </li>
 <li> <ol><li>
@@ -110,7 +111,14 @@
 </li>
 </ol></li>
 </ol><p> </p>
+<p>ALTERNATIVE TREE MANAGEMENT</p>
+<p>======================</p>
+<p>Issuing emerge --search <em>&lt;package-name&gt; </em>can be a fairly slow process compared to that of pacman and others. Thankfully a tool exists which vastly speeds up this process called <strong>eix</strong>. This tool can be installed by issuing <strong>emerge eix</strong>.</p>
 <p> </p>
+<ol><li><strong>Syncing your Gentoo tree</strong>: Instead of issuing <strong>emerge --sync</strong> you can use <strong>eix-sync</strong> which will run <strong>emerge --sync </strong>and <strong>eix-update </strong>to update eix&#039;s database. If you have recently synced your tree before installing eix, you can simply use <strong>eix-update</strong> to update eix&#039;s database and save syncing again. <strong>eix-sync </strong>will also run <strong>eix-diff</strong> to show which packages have been updated/downgraded since the last time you synced, a very useful feature for planning updates. If you have added an overlay using layman, you must run <strong>eix-update</strong> afterwards to include the overlay&#039;s packages in your eix searches. </li>
+<li><strong>Package Searching</strong>: to search for a package, simply use <strong>eix &lt;package name&gt;</strong>. You will notice the search is instant, as opposed to the slow <strong>emerge --search &lt;package name&gt;</strong>. Note that you don&#039;t have to input the full package name when using eix, for example; <strong>eix emer </strong>will display packages such as emerge, emerald-themes and other possibilities. The search output will display which version of the package you have installed, which use flags exist and which use flags your installed version has. </li>
+<li><strong>Other eix functions</strong>: <strong>eix-installed all</strong> will display every package installed on your system. This can be customised to display repo information and more. <strong>eix-layman </strong>can be used to manage overlays, for example, <strong>eix-layman -a &lt;overlay&gt;</strong> will clone the git repo (or subversion) and update the eix database with the new overlay&#039;s packages. This will save you from running <strong>layman -a &lt;overlay&gt;</strong> and <strong>eix-update</strong>. </li>
+</ol><p> </p>
 <p>NEXT TWEAK</p>
 <p>=========</p>
 <p>TO BE CONTINUED....</p>
