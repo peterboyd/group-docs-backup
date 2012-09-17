@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Password reset methods for different Linux distro</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Password reset methods for different Linux distro
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>Hello friends!!! I want to share password reset methods for different Linux distro! You are welcome to add new.. Here is some assumpsion when you write for It :</p>
+<p> </p>
+<ul><li>Username is &#039;Linux&#039;, You can replace Linux with anything as ur case</li>
+<li>Linux is installed in /dev/sda1, You may replace the /dev/sda1 with ur drive...</li>
+<li>OS installation drive is not encrypted</li>
+<li>Cant help in resetting BIOS password</li>
+</ul><p> </p>
+<p><strong>Ubuntu : </strong></p>
+<ul><li>Boot from Live CD, You can use Ubuntu itself or any other...</li>
+<li>Go to super user mode shell using sudo command</li>
+</ul><p> </p>
+<p>$ <strong>sudo su</strong></p>
+<p> </p>
+<ul><li>Mount whole file system under mount using command <strong><em>mount</em></strong>.</li>
+</ul><p> </p>
+<p># <strong>mount /dev/sda1 /mnt</strong></p>
+<p> </p>
+<ul><li>Now u need to chroot to <strong>/mnt </strong>with sudo command</li>
+</ul><p> </p>
+<p># <strong>chroot /mnt /bin/sh</strong></p>
+<p> </p>
+<ul><li>Okay now here is babystep, password will not be shown...</li>
+</ul><p> </p>
+<p># <strong>passwd Linux</strong></p>
+<p>Enter new UNIX password :</p>
+<p>Verify password :</p>
+<p> </p>
+<ul><li>Just reboot and use your new password to login...</li>
+</ul><p> </p>
+<p><strong>Will add more as soon as I get time!!! :( No time right now.... (Fedora, openSUSE)</strong></p>
+        </div>
+    </body>
+</html>
