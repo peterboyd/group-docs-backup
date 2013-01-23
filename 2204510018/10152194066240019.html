@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Usb problems troubleshooting</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Usb problems troubleshooting
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>Code to repair multiples usb devices :</p>
+<p> </p>
+<p>cd /sys/bus/pci/drivers/ehci_hcd/</p>
+<p>sudo sh -c &#039;find ./ -name &quot;0000:00:*&quot; -print| sed &quot;s/\.\///&quot;&gt;unbind&#039;</p>
+<p> </p>
+<p>If useful add it to /ect/rc.local properly ... ;)</p>
+<p> </p>
+<p>Note : Saved my ass more than once ... *Mike*</p>
+        </div>
+    </body>
+</html>

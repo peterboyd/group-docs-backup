@@ -119,9 +119,19 @@
 <li><strong>Package Searching</strong>: to search for a package, simply use <strong>eix &lt;package name&gt;</strong>. You will notice the search is instant, as opposed to the slow <strong>emerge --search &lt;package name&gt;</strong>. Note that you don&#039;t have to input the full package name when using eix, for example; <strong>eix emer </strong>will display packages such as emerge, emerald-themes and other possibilities. The search output will display which version of the package you have installed, which use flags exist and which use flags your installed version has. </li>
 <li><strong>Other eix functions</strong>: <strong>eix-installed all</strong> will display every package installed on your system. This can be customised to display repo information and more. <strong>eix-layman </strong>can be used to manage overlays, for example, <strong>eix-layman -a &lt;overlay&gt;</strong> will clone the git repo (or subversion) and update the eix database with the new overlay&#039;s packages. This will save you from running <strong>layman -a &lt;overlay&gt;</strong> and <strong>eix-update</strong>. </li>
 </ol><p> </p>
+<p>USE FLAGS</p>
+<p>========</p>
+<p>Managing use flags and figuring out what they do can be fairly tricky for some new users. Here are some useful tips for managing them:</p>
+<ol><li>Install Gentoolkit </li>
+<li>The command <strong>equery u package </strong>will list all of the use flags which belong to a package and display a short description of what the use flags mean. </li>
+<li>Running <strong>equery hasuse use-flag </strong>will display each package which contains the use flag you specify. </li>
+<li>If you have <strong>eix</strong> installed, you can use <strong>eix -e package </strong>to display the use flags of a package without the short description. </li>
+<li>You can figure out what a use flag does by using <strong>euse -i use-flag</strong>.  This displays the use flag and a description of what it does in every  package which has it. It is very handy but can generate a huge list of  packages if you use it on a common use flag.</li>
+</ol><p>A package is available in portage called <strong>ufed</strong> which is a method of enabling/disabling use flags with a short description of what they do.</p>
+<p> </p>
 <p>NEXT TWEAK</p>
 <p>=========</p>
-<p>TO BE CONTINUED....</p>
+<p>coming soon...</p>
         </div>
     </body>
 </html>
