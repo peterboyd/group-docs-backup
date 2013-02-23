@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Re-install GRUB2 (General Help)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Re-install GRUB2 (General Help)
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>Since I&#039;ve seen a lot of posts regarding a machine that does not boot due to some bootloader issue, I&#039;ve written this short document. It explains how to install GRUB2 and generate grub.cfg (menu entries).</p>
+<p> </p>
+<p> </p>
+<p><strong>Requirements:</strong></p>
+<ol><li>
+<p>Machine on which the bootloader is to be	installed.</p>
+</li>
+<li>
+<p>Linux live USB/Disk. It is best that this is the install USB/Disk you 	have used for installing of your distro, though any distro usually would do (I recommend	Arch, more on the &#039;why&#039; later)</p>
+</li>
+</ol><p> </p>
+<p> </p>
+<p><strong>The easiest step you should try first:</strong></p>
+<p><em><strong>Note</strong><strong>s</strong><strong>:</strong> If you get something like &#039;sudo: command not found&#039;, just ignore &#039;sudo&#039; since a lot of distros provide minimal ISO which are logged into root by default. This method will only work if your “/boot” resides on your root partition! If this step fails then choose one of the next described methods.</em></p>
+<ol><li>
+<p>Open up a terminal if you&#039;re using a live session.</p>
+</li>
+<li>
+<p>Execute lsblk and check what location corresponds to the root 	partition of your distro (I&#039;ll be using /dev/sda1 as an example).</p>
+</li>
+<li>
+<p>sudo bash (get a root bash for all the succeeding commands. 	If this fails, try “sudo sh” instead)</p>
+</li>
+<li>
+<p>mount /dev/sda1 /mnt (mount root partition on /mnt)</p>
+</li>
+<li>
+<p>grub-install -boot-directory=/mnt/boot /dev/sda (install GRUB 	to MBR using the grub version from the live CD)</p>
+</li>
+<li>
+<p>reboot</p>
+</li>
+</ol><p> </p>
+<p> </p>
+<p><strong>Steps </strong><strong>for Live USB /except for Arch/</strong><strong>:</strong></p>
+<p><em><strong>Note</strong><strong>s</strong><strong>:</strong> If you get something like &#039;sudo: command not found&#039;, just ignore &#039;sudo&#039; since a lot of distros provide minimal ISO which are logged into root by default. This method will only work if your /boot resides on your root partition!</em></p>
+<ol><li>
+<p>Open up a terminal if you&#039;re using a live session.</p>
+</li>
+<li>
+<p>Execute lsblk and check what location corresponds to the root 	partition of your distro (I&#039;ll be using /dev/sda1 as an example).</p>
+</li>
+<li>
+<p>sudo bash (get a root bash for all the succeeding commands)</p>
+</li>
+<li>
+<p>mount /dev/sda1 /mnt (mount root partition on /mnt)</p>
+</li>
+<li>
+<p>for i in /dev /dev/pts /proc /sys; do mount -B $i /mnt$i; done (mount the necessarry accessories. Please mind the spaces and 	the “;” char)</p>
+</li>
+<li>
+<p>chroot /mnt /bin/bash (changing root to /mnt and bash is shell).</p>
+</li>
+<li>
+<p>grub-mkconfig -o /boot/grub/grub.cfg (generate grub.cfg)</p>
+</li>
+<li>
+<p>grub-install /dev/sda (install GRUB to MBR using the grub 	version from your broken system)</p>
+</li>
+<li>
+<p>exit (exit the fake root environment)</p>
+</li>
+<li>
+<p>for i in /dev/pts /dev /proc /sys; do umount /mnt$i; done 	(umount the temporary mounted accessories)</p>
+</li>
+<li>
+<p>cd (change directory to default)</p>
+</li>
+<li>
+<p>umount /mnt (unmount root partition. If you get something 	like /mnt or any other partition is busy, it means one of the mounted temporary file systems was left unmounted. Use “umount -f /mnt” instead to unmount)</p>
+</li>
+<li>
+<p>reboot</p>
+</li>
+</ol><p> </p>
+<p> </p>
+<p><strong>Steps for Arch Live USB:</strong></p>
+<p><em><strong>Note:</strong></em><em> </em><em>I recommend the Arch USB because instead of a normal chroot, it also includes the arch-chroot which automatically mounts all of the required temporary file systems.</em></p>
+<ol><li>
+<p>mount /dev/sda1 /mnt</p>
+</li>
+<li>
+<p>arch-chroot /mnt</p>
+</li>
+<li>
+<p>Follow steps from 7-9 given above (in Steps for Live USB /except for Arch/)</p>
+</li>
+<li>
+<p>umount /mnt</p>
+</li>
+<li>
+<p>reboot</p>
+</li>
+</ol><p> </p>
+<p> </p>
+<p>Well, that&#039;s pretty much it, but here are a few pointers:</p>
+<ol><li>
+<p>Any of the described procedures may not	work for you, since every distro has its own way of managing grub entries/installation etc. If all this doesn&#039;t work for you, try Google search with the terms “fedora fix grub2” for example (if you use Fedora).</p>
+</li>
+<li>
+<p>A good source of info on GRUB2 can be found here: https://help.ubuntu.com/community/Grub2/Installing and though it is Ubuntu specific in a way, it may help you resolve	some of your problems.</p>
+</li>
+<li>
+<p>If you get something like &#039;grub-install: command not found&#039; in the above listed steps, just install “grub-bios” from 	your respective package manager. Before that, you need to make sure you have a working internet connection.</p>
+</li>
+<li>
+<p>If GRUB does not have entries for Windows (in case you&#039;re dual booting), make sure you have “os-prober”  installed. And then regenerate the entries (step 7-9 in Steps for Live USB /except for Arch/).</p>
+</li>
+</ol><p> </p>
+<p>The original of the article can be found here: http://pastebin.com/yCS91hdZ</p>
+        </div>
+    </body>
+</html>
