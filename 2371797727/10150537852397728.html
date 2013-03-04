@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>What to do when Network drivers are missing  after installation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             What to do when Network drivers are missing  after installation
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>You bought new laptop, and during and after installation there are no recognized network interfaces. What now?</p>
+<p> </p>
+<p>NOTE: I will expand this doc later.</p>
+<p> </p>
+<p>1. log in into console as root</p>
+<p>2. run &quot;lspci -v&quot; and check for  &quot;lscpci -nn&quot;</p>
+<p>3. Find what kmod package in ElRepo supports it. link to DeviceID</p>
+<p>4. download and install via &quot;yum install &lt;file(s)&gt; --nogpg&quot;</p>
+<p>5. Use install DVD (Media repo) to reinstall kernel (so drivers are actually hooked to kernel).</p>
+<p>6. run &quot;system-config-network&quot; as root so the /etc/system/network file is created.</p>
+<p>6. Reboot</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>What CentOS IS and what it is NOT </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             What CentOS IS and what it is NOT 
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p><strong>What CentOS IS and what it is NOT</strong></p>
+<p><em>by Johnny Hughes</em></p>
+<p> </p>
+<p>I copied this text from a mail on a mailing list written on Jan 27th 2013.</p>
+<p>Every major 3rd party repository out there already provides a Release RPM that sets up their repository. It drops a file in /etc/yum.repos.d/ and the only real thing that one needs to do to those repo files is to set priorities on them if you want to do that.</p>
+<p> </p>
+<p>The problem with 3rd party repos is that they are not necessarily designed to work together. So this means, for example, that EPEL and RPMForge have conflicts between themselves regarding package versions, etc.</p>
+<p> </p>
+<p>Other 3rd party repos might replace packages in the base CentOS distroibutions with older ones.</p>
+<p> </p>
+<p>One thing to remember about Linux is that some packages are built against other packages to share features. As an example, openssh from CentOS-6.3 requires the following packages to build against:</p>
+<p> </p>
+<p>gtk2-devel</p>
+<p>libX11-devel</p>
+<p>autoconf</p>
+<p>automake</p>
+<p>perl</p>
+<p>zlib-devel</p>
+<p>audit-libs-devel &gt;= 2.0.5</p>
+<p>util-linux</p>
+<p>groff</p>
+<p>man</p>
+<p>pam-devel</p>
+<p>tcp_wrappers-devel</p>
+<p>fipscheck-devel</p>
+<p>openssl-devel &gt;= 0.9.8j</p>
+<p>openldap-devel</p>
+<p>krb5-devel</p>
+<p>libedit-devel</p>
+<p>ncurses-devel</p>
+<p>nss-devel</p>
+<p>libselinux-devel &gt;= 1.27.7</p>
+<p>audit-libs &gt;= 1.0.8 xauth</p>
+<p> </p>
+<p>So, if you upgrade the gtk2 to a new version for some new package, then you would also need to rebuild (or upgrade and rebuild) openssh.</p>
+<p> </p>
+<p>Taking gtk2 as in our example here, if you wanted a new gtk2 in CentOS-5.9, then you would have to rebuild the following packages:</p>
+<p> </p>
+<p>alacarte-0.10.0-1.fc6.src.rpm</p>
+<p>anaconda-11.1.2.259-1.src.rpm</p>
+<p>at-spi-1.7.11-3.el5.src.rpm</p>
+<p>avahi-0.6.16-10.el5_6.src.rpm</p>
+<p>bluez-gnome-0.5-5.fc6.src.rpm</p>
+<p>bug-buddy-2.16.0-2.el5.src.rpm</p>
+<p>control-center-2.16.0-16.el5.src.rpm</p>
+<p>devhelp-0.12-22.el5_8.src.rpm</p>
+<p>eclipse-3.2.1-19.el5.centos.src.rpm</p>
+<p>eel2-2.16.1-1.el5.src.rpm</p>
+<p>ekiga-2.0.2-7.0.2.src.rpm</p>
+<p>eog-2.16.0.1-6.el5.src.rpm</p>
+<p>esc-1.1.0-13.el5_8.2.src.rpm</p>
+<p>evince-0.6.0-17.el5.src.rpm</p>
+<p>evolution-2.12.3-19.el5.src.rpm</p>
+<p>file-roller-2.16.0-2.fc6.src.rpm</p>
+<p>firefox-10.0.11-1.el5.centos.src.rpm</p>
+<p>firefox-10.0.12-1.el5.centos.src.rpm</p>
+<p>gail-1.9.2-3.el5_4.src.rpm</p>
+<p>gcalctool-5.8.25-1.el5.src.rpm</p>
+<p>gcc-4.1.2-54.el5.src.rpm</p>
+<p>GConf2-2.14.0-9.el5.src.rpm</p>
+<p>gconf-editor-2.16.0-3.el5.src.rpm</p>
+<p>gdm-2.16.0-59.el5.centos.src.rpm</p>
+<p>gedit-2.16.0-9.el5.src.rpm</p>
+<p>gftp-2.0.18-3.2.2.src.rpm</p>
+<p>ghostscript-8.70-14.el5_8.1.src.rpm</p>
+<p>gimp-2.2.13-2.0.10.el5.src.rpm</p>
+<p>glade2-2.12.1-6.el5.src.rpm</p>
+<p>gnome-applets-2.16.0.1-19.el5.src.rpm</p>
+<p>gnome-applet-vm-0.1.2-1.el5.src.rpm</p>
+<p>gnome-bluetooth-0.7.0-10.2.el5.src.rpm</p>
+<p>gnome-desktop-2.16.0-1.el5.centos.1.src.rpm</p>
+<p>gnome-games-2.16.0-2.el5.src.rpm</p>
+<p>gnome-keyring-0.6.0-1.fc6.src.rpm</p>
+<p>gnome-mag-0.13.1-1.fc6.src.rpm</p>
+<p>gnome-media-2.16.1-3.el5.src.rpm</p>
+<p>gnome-mount-0.5-3.el5.src.rpm</p>
+<p>gnome-netstatus-2.12.0-5.el5.src.rpm</p>
+<p>gnome-nettool-2.16.0-1.fc6.src.rpm</p>
+<p>gnome-panel-2.16.1-7.el5.src.rpm</p>
+<p>gnome-python2-2.16.0-1.fc6.src.rpm</p>
+<p>gnome-python2-desktop-2.16.0-3.el5.src.rpm</p>
+<p>gnome-python2-extras-2.14.2-7.el5.src.rpm</p>
+<p>gnome-screensaver-2.16.1-8.el5_7.5.src.rpm</p>
+<p>gnome-session-2.16.0-10.el5.src.rpm</p>
+<p>gnome-system-monitor-2.16.0-4.el5.src.rpm</p>
+<p>gnome-terminal-2.16.0-5.3.el5_6.1.src.rpm</p>
+<p>gnome-themes-2.16.0-1.fc6.src.rpm</p>
+<p>gnome-user-share-0.10-6.el5.src.rpm</p>
+<p>gnome-utils-2.16.0-5.el5.src.rpm</p>
+<p>gstreamer-plugins-good-0.10.9-1.el5_3.2.src.rpm</p>
+<p>gthumb-2.7.8-8.el5.src.rpm</p>
+<p>gtk2-engines-2.8.0-3.el5.src.rpm</p>
+<p>gtkhtml2-2.11.0-3.src.rpm</p>
+<p>gtksourceview-1.8.0-1.fc6.src.rpm</p>
+<p>gtkspell-2.0.11-2.1.src.rpm</p>
+<p>gtk-vnc-0.3.8-3.el5.src.rpm</p>
+<p>gucharmap-1.8.0-1.fc6.src.rpm</p>
+<p>icon-slicer-0.3-7.2.2.src.rpm</p>
+<p>im-chooser-0.3.3-6.el5.src.rpm</p>
+<p>jpilot-0.99.8-7.1.src.rpm</p>
+<p>kasumi-2.0.1-1.1.fc6.src.rpm</p>
+<p>libbonoboui-2.16.0-1.fc6.src.rpm</p>
+<p>libbtctl-0.6.0-9.2.el5.src.rpm</p>
+<p>libdv-0.104-4.fc6.1.src.rpm</p>
+<p>libgail-gnome-1.1.3-1.2.1.src.rpm</p>
+<p>libglade2-2.6.0-2.src.rpm</p>
+<p>libgnomecanvas-2.14.0-4.1.src.rpm</p>
+<p>libgnomeprintui22-2.12.1-6.src.rpm</p>
+<p>libgnomeui-2.16.0-5.el5.src.rpm</p>
+<p>libgpod-0.4.0-1.el5.src.rpm</p>
+<p>libgtk-java-2.8.7-3.el5.src.rpm</p>
+<p>libnotify-0.4.2-6.el5.src.rpm</p>
+<p>librsvg2-2.16.1-1.el5.src.rpm</p>
+<p>libwmf-0.2.8.4-10.2.src.rpm</p>
+<p>libwnck-2.16.0-4.fc6.src.rpm</p>
+<p>metacity-2.16.0-16.el5.src.rpm</p>
+<p>mtr-0.71-3.1.src.rpm</p>
+<p>nautilus-2.16.2-10.el5.src.rpm</p>
+<p>nautilus-cd-burner-2.16.0-7.el5.src.rpm</p>
+<p>nautilus-sendto-1.0.1-6.el5.centos.src.rpm</p>
+<p>NetworkManager-0.7.0-13.el5.src.rpm</p>
+<p>nmap-4.11-2.src.rpm</p>
+<p>notification-daemon-0.3.5-9.el5.src.rpm</p>
+<p>notify-python-0.1.0-3.fc6.src.rpm</p>
+<p>nspluginwrapper-1.3.0-9.el5.src.rpm</p>
+<p>openoffice.org-3.1.1-19.10.el5_8.4.src.rpm</p>
+<p>openssh-4.3p2-82.el5.src.rpm</p>
+<p>oprofile-0.9.4-20.el5.src.rpm</p>
+<p>orca-1.0.0-5.el5.src.rpm</p>
+<p>pidgin-2.6.6-11.el5.4.src.rpm</p>
+<p>pinentry-0.7.3-3.el5.src.rpm</p>
+<p>planner-0.14.1-4.el5.src.rpm</p>
+<p>poppler-0.5.4-19.el5.src.rpm</p>
+<p>pygtk2-2.10.1-12.el5.src.rpm</p>
+<p>redhat-artwork-5.1.0-28.el5.centos.src.rpm</p>
+<p>rhythmbox-0.11.6-4.el5.src.rpm</p>
+<p>sabayon-2.12.4-9.el5.src.rpm</p>
+<p>samba3x-3.6.6-0.129.el5.src.rpm</p>
+<p>sane-frontends-1.0.14-1.2.2.src.rpm</p>
+<p>scim-1.4.4-44.el5.src.rpm</p>
+<p>scim-pinyin-0.5.91-16.el5.src.rpm</p>
+<p>scim-tables-0.5.6-7.src.rpm</p>
+<p>setools-3.0-3.el5.src.rpm</p>
+<p>sound-juicer-2.16.0-3.el5.src.rpm</p>
+<p>thunderbird-10.0.11-1.el5.centos.src.rpm</p>
+<p>thunderbird-10.0.12-3.el5.centos.src.rpm</p>
+<p>trousers-0.3.1-4.el5.src.rpm</p>
+<p>tsclient-0.148-6.el5.src.rpm</p>
+<p>usermode-1.88-3.el5.2.src.rpm</p>
+<p>vim-7.0.109-7.2.el5.src.rpm</p>
+<p>vino-2.13.5-9.el5_4.src.rpm</p>
+<p>virt-manager-0.6.1-16.el5.src.rpm</p>
+<p>virt-viewer-0.0.2-3.el5.src.rpm</p>
+<p>vte-0.14.0-2.el5.src.rpm</p>
+<p>w3m-0.5.1-18.el5.src.rpm</p>
+<p>wireshark-1.0.15-5.el5.src.rpm</p>
+<p>xcdroast-0.98a15-12.2.2.src.rpm</p>
+<p>xchat-2.6.6-8.el5.src.rpm</p>
+<p>xen-3.0.3-142.el5.src.rpm</p>
+<p>xsri-2.1.0-10.fc6.src.rpm</p>
+<p>xulrunner-10.0.11-1.el5_8.src.rpm</p>
+<p>xulrunner-10.0.12-1.el5_9.src.rpm</p>
+<p>yelp-2.16.0-29.el5_8.src.rpm</p>
+<p>zenity-2.16.0-2.el5.src.rpm</p>
+<p> </p>
+<p>Not only would you need to rebuild all those packages if you upgraded gtk2 ... you might have to find a newer version of the package because the current one might not build against the version of gtk2 you upgrades to.</p>
+<p> </p>
+<p>Also, you would now also need to find and build any packages that build against the packages you just built ... an example here is that a given version of gnome is tied to a certain range gtk2 and if you wanted to upgrade gtk2, you might also have to upgrade gnome ... and that would mean you would also have to upgrade everything that builds against gnome, etc.</p>
+<p> </p>
+<p>So upgrading one package can cause a domino effect that means you have either broken a bunch of packages or you have to rebuild a bunch of packages.</p>
+<p> </p>
+<p>That is why RHEL (and therefore CentOS, as we rebuild their sources) does not do that.</p>
+<p> </p>
+<p>Enterprise Linux is, by definition, designed to maintain the main APIs and ABIs that come out at the beginning of the distribution for the entire lifetime of that main version. So, CentOS-5 will always have Gnome 2.16. Anything that requires a Gnome &gt; 2.16 is likely never going to be released for CentOS-5. The point releases are basically just a point in time &quot;freeze&quot; of the tree to generate install media with updates ... though new functionality is sometimes added and that also takes place during the point releases. But this new functionality is not going to require a new major version of Gnome/GTK or KDE or httpd or openssh or openssl, etc.</p>
+<p> </p>
+<p>Each major version of CentOS is designed to give you its major functionality that it comes with for 10 years. It is not designed to be cutting edge, it is designed to function like it did when you installed it for 10 years from the time it was released. That means if you are an ISP (or Facebook or Zynga) and you invested $1 Million dollars in writing software, you can know how long your software will be able to run before you have to invest to rewrite it for a new platform. You can&#039;t rewrite your software every 6 months when the latest version of Gnome is released. You need a solid, stable platform to run your code for a long time. That is Enterprise Linux.</p>
+<p> </p>
+<p>Some of the Main versions (CentOS-5 and CentOS-6 and CentOS-7) will be active at the same time, and you can pick the main tree that provides the version that you need and you can then stabilize on it. Right now, both CentOS-5 (active until 2017) and CentOS-6 (active until 2020) are both active. They will both be secure until their EOL dates by a process that Red Hat calls backporting:</p>
+<p> </p>
+<p>https://access.redhat.com/security/updates/backporting/</p>
+<p> </p>
+<p>If one is looking for the latest and greatest Linux features on the cutting edge, well CentOS is not for that. Fedora would be the Red Hat product that is cutting edge ... or Rawhide if you are looking for bleeding edge.</p>
+<p> </p>
+<p>Debian has the same sort of thing. They have oldstable (gets security updates for 1 year after a stable release), stable (the current release), testing (the next release), and unstable (cutting edge, named sid).</p>
+<p> </p>
+<p>Rawhide is like sid, Fedora is like the Testing release, RHEL is like the Stable Release and the Old Stable release. Except RHEL (and CentOS since we build those sources) provides those stable releases for a lot longer period of time.</p>
+<p> </p>
+<p>Lenny is Debain&#039;s Old Stable and it no longer gets security updates ... but it was active from February 2009 to February 2012. That is only 3 years. CentOS is around for 10 years.</p>
+<p> </p>
+<p>With CentOS, you normally get to pick when you need to upgrade based on your requirements, not an artificial time period of 3 years maximum. However, you can, if you want upgrade to a new version of CentOS every 2-3 years as well ... it is just not required to get security updates.</p>
+<p>For example, CentOS-4 was released in March 2005 and CentOS-5 was released in April 2007 CentOS-6 was released in July 2010. So, the ability to upgrade (if you want) every couple of years is there as well as going up to 10 years between upgrades (if you choose to).</p>
+<p>My point is that if you are expecting CentOS to be Debian from SID to OldStable or OpenSUSE or Fedora ... it is not that, nor is it meant to be that. It is meant to be a long term stable release.</p>
+<p> </p>
+<p>Some items on the Desktop (like Firefox, Thunderbird, LibreOffice, etc.) are upgraded inside a major release, but most things are not going to be. If CentOS-5.0 ships with Gnome 2.16 ... Gnome 2.16 is going to be the version it ends with as well in 10 years (it will get security updates and may go from 2.16.1 to 2.16.8 or whatever, but it will still be 2.16.x at the end).</p>
+<p> </p>
+<p>CentOS is not designed to major upgrades in place. Because CentOS does not change major ABIs and APIs inside a major release, you can use the normal tools (like yum) to upgrade between the point releases in a given major release (that would be CentOS-5.x to any other CentOS-5.x, ie, upgrade from 5.2 to 5.9 is supported). However the ABIs and APIs can have major changes between major releases and therefore your configuration files and other things (like data, etc) will likely require changes if you move to a new major version (that would be moving from a CentOS-5.x release to a CentOS-6.x release).</p>
+<p>  CentOS is what it is, so please make sure you are using it for what it is meant for, not trying to make it be one of the cutting edge, release every 6 months, distros of Linux ... if that is the kind of Linux you want then CentOS is not for you.</p>
+<p> </p>
+<p>Johnny Hughes (johnny&#064;centos.org)</p>
+        </div>
+    </body>
+</html>

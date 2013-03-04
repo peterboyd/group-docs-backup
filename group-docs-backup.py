@@ -66,7 +66,7 @@ __status__ = "Development"
 
 
 # You can edit the group IDs if you want
-GROUPS_ID = ('2204510018','228135853929943') # Linux and Linux (tech support) groups
+GROUPS_ID = ('2204510018','228135853929943','2371797727') # Linux, Linux (tech support) and CentOS groups
 
 
 # No need to edit anything below here

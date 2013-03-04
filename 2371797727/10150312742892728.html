@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mounting NFS filesystem via AutoFS</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Mounting NFS filesystem via AutoFS
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p><em><strong>NFS4 Server on CentOS </strong></em></p>
+<p> </p>
+<p>Create NFS4 BIND subdirectory:</p>
+<p>In my case I will mount them in <strong>/nfs4exports</strong>. You need to create an subdirectory for each directory you are binding/exporting:</p>
+<p> </p>
+<p>As root:</p>
+<p>mkdir /nfs4exports</p>
+<p> </p>
+<p>This for MY subdirectories:</p>
+<p>mkdir /nfs4exports/extra</p>
+<p>mkdir /nfs4exports/home</p>
+<p>mkdir /nfs4exports/ostalo</p>
+<p> </p>
+<p>Edit <strong>/etc/fstab</strong> to add binding for those folders:</p>
+<p>/extra             /nfs4exports/extra      bind    bind            0 0</p>
+<p>/ostalo            /nfs4exports/ostalo     bind    bind            0 0</p>
+<p>/home             /nfs4exports/home     bind    bind            0 0 </p>
+<p> </p>
+<p> </p>
+<p><strong>Next section</strong> is ONLY to show you the basics. Some of the options I use can be <strong>DANGEROUS in terms of security</strong>. Please first <strong>read the NFS4 documentation</strong>, before adding any of the options to your config.</p>
+<p> </p>
+<p>Edit<strong> /etc/exports</strong> to add (lines are broken in two by FB, they should be one line per subdirectory):</p>
+<p> </p>
+<p>/nfs4exports 192.168.10.0/255.255.255.0(rw,fsid=0,sync,no_root_squash,no_subtree_check)</p>
+<p>/nfs4exports/extra 192.168.10.0/255.255.255.0(rw,no_subtree_check,nohide,sync,no_root_squash)</p>
+<p>/nfs4exports/ostalo 192.168.10.0/255.255.255.0(rw,no_subtree_check,nohide,sync,no_root_squash)</p>
+<p>/nfs4exports/home 192.168.10.0/255.255.255.0(rw,no_subtree_check,nohide,sync,no_root_squash) 192.168.219.0/24(rw,no_subtree_check,nohide,sync)</p>
+<p> </p>
+<p>- Main NFS export folder &quot;<strong>/nfs4exports</strong>&quot; MUST have fsid=0, and all subdirectories bust be below that one.</p>
+<p>- no_root_squash will allow the root of the client to have UNRESTRICTED access to NFS server. CAUTION!!!</p>
+<p>- &quot;<strong>sync</strong>&quot; will be <em><strong>MUCH</strong></em> slower then using &quot;<strong>async</strong>&quot;, writing mostly, but in case of NFS server crash you can <strong>LOOSE</strong> your data!!! I use async to dramatically speed up write operations when I build rpms using NFS filesystem as BUILD and TMP folders. Only unpacking larger tar.gz file can be  <strong>20-100 TIMES slower</strong></p>
+<p> </p>
+<p>Once again, READ THE NFS  DOCUMENTATION before using options I use. Make sure you will not compromise your NFS server with bad choice.</p>
+<p> </p>
+<p>Now restart NFS daemon to apply changes:</p>
+<p> </p>
+<p>service nfs restart</p>
+<p> </p>
+<p> </p>
+<p><em><strong>NFS4 on client side:</strong></em></p>
+<p> </p>
+<p>Test if you can see NFS server:</p>
+<p> </p>
+<p>showmount -e &lt;ipaddress&gt;</p>
+<p> </p>
+<p>I chose to mount all my NFS filesystems in subdirectory <strong>/autofsmounts/</strong> with subfolders for each &lt;server name&gt;, and then create symlinks for those subdirectories where I want them mounted. This is the only way I how to access to NFS filesystem by just clicking on the icon of the directory, since AutoFS just removes mount point/folder so you can not click on non-existing folder.</p>
+<p> </p>
+<p>Edit <strong>/etc/auto.master</strong> and add one line per NFS server:</p>
+<p>/autofsmounts/vmaster  /etc/auto.vmaster --timeout=120</p>
+<p>/autofsmounts/kancelarija  /etc/auto.kancelarija  --timeout=120</p>
+<p>/autofsmounts/sagittarius  /etc/auto.sagittarius --timeout=120</p>
+<p> </p>
+<p>Last two lines are irrelevant for this example.</p>
+<p> </p>
+<p><strong>--timeout=</strong> is important option. It sets time in second for the period while AutoFS keeps NFS subfolder/filesystem mounted after last access. For remote systems with lower bandwidth or NFS server with higher load reduce this time, but keep in mind that if you access it frequently you will have slowdowns while subfolder is remounted.</p>
+<p> </p>
+<p>Now create separate file for each server and name all subfolders on that server:</p>
+<p> </p>
+<p><strong>/etc/auto.vmaster</strong>:</p>
+<p>extra    -fstype=nfs4,rw,proto=tcp    vmaster.example.com:/extra</p>
+<p>ostalo    -fstype=nfs4,rw,proto=tcp    vmaster.example.com:/ostalo</p>
+<p>home    -fstype=nfs4,rw,proto=tcp    vmaster.example.com:/home</p>
+<p> </p>
+<p>Now you have to create actual directories, first actual mounts and then directories where I keep symlinks and can actually click on the directory icon (I chose <strong>/vmaster</strong> ):</p>
+<p> </p>
+<p>mkdir /autofsmounts</p>
+<p>mkdir /autofsmounts/vmaster</p>
+<p>mkdir /autofsmounts/sagittarius</p>
+<p> </p>
+<p>mkdir /vmaster</p>
+<p>cd /autofsmounts/vmaster</p>
+<p>ls extra</p>
+<p>ln -s extra /vmaster/extra</p>
+<p> </p>
+<p>ls ostalo</p>
+<p> </p>
+<p>ln -s ostalo /vmaster/ostalo</p>
+<p> </p>
+<p>ls home</p>
+<p> </p>
+<p>ln -s home /vmaster/home</p>
+<p>...</p>
+<p> </p>
+<p> </p>
+<p>&quot;ls extra&quot;  to triger the mount of NFS subdirectory by listing it&#039;s contents.</p>
+<p> </p>
+<p>Now reload autofs config files:</p>
+<p> </p>
+<p>service autofs reload</p>
+<p> </p>
+<p>, there is no need to restart the service, just reload.</p>
+<p> </p>
+<p>Now when you use GUI to go to /vmaster directory, you will see icons for all NFS exports and you can click on them to access them.</p>
+        </div>
+    </body>
+</html>

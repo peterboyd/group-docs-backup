@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Updating locate database with AutoFS NFS filesystems</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Updating locate database with AutoFS NFS filesystems
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>There is an problem with locate/updatedb when you setup NFS filesystem via AutoFS, since updatedb will NOT follow symlinks.</p>
+<p> </p>
+<p>The solution is to first go to the folder behind the symlink and then run the updatedb (again). Be warned that AutoFS filesystems are unmounted after some time, mostly 120 sec, so if updatedb runs more then that time for first such filesystem, others will not be included. So you should query one such filesystems at the time and run updatedb. Like this:</p>
+<p> </p>
+<p>/etc/cron.daily/mlocate:</p>
+<p>#!/bin/sh</p>
+<p>nodevs=$(&lt; /proc/filesystems awk &#039;$1 == &quot;nodev&quot; &#123; print $2 &#125;&#039;)</p>
+<p>nodevs=$&#123;nodevs//&#039;nfsd&#039;/&#039;&#039;&#125;;</p>
+<p>nodevs=$&#123;nodevs//&#039;nfs4&#039;/&#039;&#039;&#125;;</p>
+<p>nodevs=$&#123;nodevs//&#039;autofs&#039;/&#039;&#039;&#125;;</p>
+<p>nodevs=$&#123;nodevs//&#039;nfs&#039;/&#039;&#039;&#125;;</p>
+<p>renice +19 -p $$ &gt;/dev/null 2&gt;&amp;1</p>
+<p>ionice -c2 -n7 -p $$ &gt;/dev/null 2&gt;&amp;1</p>
+<p>cd /vmaster/extra/</p>
+<p>/usr/bin/updatedb -f &quot;$nodevs&quot;</p>
+<p>cd /vmaster/ostalo</p>
+<p>/usr/bin/updatedb -f &quot;$nodevs&quot;</p>
+<p>cd /sagittarius/home</p>
+<p>/usr/bin/updatedb -f &quot;$nodevs&quot;</p>
+<p>cd /sagittarius/druga</p>
+<p>/usr/bin/updatedb -f &quot;$nodevs&quot;</p>
+<p> </p>
+<p>In this example I am updating 4 autofs NFS filesystem, one at the time, in addition to regular filesystems.</p>
+<p> </p>
+<p>/vmaster/ folder is where I mount my NFS filesystems exported from server &quot;vmaster.xxx.yy&quot;</p>
+<p> </p>
+<p>There is unexplored possibility that on consequent runs updatedb deletes files from unmounted system. I will look into this and update this text.</p>
+        </div>
+    </body>
+</html>
