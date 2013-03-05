@@ -32,8 +32,6 @@ Setting up your local git repo:
 6. Add some info and config options to the repo's config:
     cd ~/Projects/group-docs-backup
     git config user.name "Firstname Lastname OR YOUR_NICKNAME_USED_FOR_THE_SSH_KEY"
-    Example needed!!!
-
 
 7. Now you can proceed to "Using the repo"
 
@@ -46,7 +44,7 @@ Using the repo (this is done after setting up the local git repo):
 1. EVERY TIME BEFORE updating the docs with the python scrypt,
    first update the git repo:
     cd ~/Projects/group-docs-backup
-    git pull
+    git pull origin master
 
 2. Run the update documents script:
     ./group-docs-backup.py
