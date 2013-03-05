@@ -17,6 +17,8 @@ Setting up your local git repo:
 2. Create an ssh keypair if you do not have one already:
     ssh-keygen -t rsa -C "your_email@youremail.com OR Your_nickname"
 
+   Later on, if you use non-standard filename for ssh key (other then id_dsa and id_dsa.pub)
+
 3. Upload your ssh public key (the one ending in .pub in your ~/.ssh folder)
    to your github account -> https://github.com/account/ssh
 
@@ -30,6 +32,8 @@ Setting up your local git repo:
 6. Add some info and config options to the repo's config:
     cd ~/Projects/group-docs-backup
     git config user.name "Firstname Lastname OR YOUR_NICKNAME_USED_FOR_THE_SSH_KEY"
+    Example needed!!!
+
 
 7. Now you can proceed to "Using the repo"
 
