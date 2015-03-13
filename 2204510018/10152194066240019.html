@@ -12,14 +12,7 @@
 
         <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
         <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
-            <p>Code to repair multiples usb devices :</p>
-<p> </p>
-<p>cd /sys/bus/pci/drivers/ehci_hcd/</p>
-<p>sudo sh -c &#039;find ./ -name &quot;0000:00:*&quot; -print| sed &quot;s/\.\///&quot;&gt;unbind&#039;</p>
-<p> </p>
-<p>If useful add it to /ect/rc.local properly ... ;)</p>
-<p> </p>
-<p>Note : Saved my ass more than once ... *Mike*</p>
+            <p>Code to repair multiples usb devices :</p><p><br /></p><p>cd /sys/bus/pci/drivers/ehci_hcd/</p><p>sudo sh -c &#039;find ./ -name &quot;0000:00:*&quot; -print| sed &quot;s/\.\///&quot;&gt;unbind&#039;</p><p><br /></p><p>If useful add it to /ect/rc.local properly ... ;)<br /><br /><span>With Debian, the fix don&#039;t work, this one does ...<br /><br />/etc/rc.local</span><span><br /><br />rmmod ehci_pci &amp;&amp; rmmod ehci_hcd &amp;&amp; modprobe uhci_hcd</span><br /><br />Another that could help :<br /><br />echo Y | sudo tee /sys/module/usbcore/parameters/old_scheme_first<br /></p><p><br /></p><p>Note : Saved my ass more than once ... *Mike*</p>
         </div>
     </body>
 </html>

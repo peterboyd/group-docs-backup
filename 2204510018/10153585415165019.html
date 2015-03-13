@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weird issues and fixes</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Weird issues and fixes
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>This file is mostly to help troubleshooting, if an exceptional fix pass by, please list it here, it may save admins and users time or even help yourself :</p><p><br /></p><p><b>1- Keyboard/trackpad/sound issues on Toshiba Satellite L775D :</b></p><p><a href="#" role="button"><br /></a></p><p><a href="#" role="button"><a href="https://www.facebook.com/l.php?u=https%3A%2F%2Fwiki.archlinux.org%2Findex.php%2FToshiba_Satellite_L775D_S7340&amp;h=eAQF1oy3s&amp;s=1" target="_blank" rel="nofollow" onmouseover="LinkshimAsyncLink.swap(this, &quot;https:\/\/wiki.archlinux.org\/index.php\/Toshiba_Satellite_L775D_S7340&quot;);" onclick="LinkshimAsyncLink.swap(this, &quot;https:\/\/www.facebook.com\/l.php?u=https\u00253A\u00252F\u00252Fwiki.archlinux.org\u00252Findex.php\u00252FToshiba_Satellite_L775D_S7340&amp;h=eAQF1oy3s&amp;s=1&quot;);">https://wiki.archlinux.org/index.php/Toshiba_Satellite_L775D_S7340</a></a><br /></p><p><a href="#" role="button">*special thanks to Michael Fajohn, his issue, gave the document idea*</a></p><p><br /></p><p><b>2- Code to repair multiples usb devices :</b></p><p> </p><p>cd /sys/bus/pci/drivers/ehci_hcd/</p><p>sudo sh -c &#039;find ./ -name &quot;0000:00:*&quot; -print| sed &quot;s/\.\///&quot;&gt;unbind&#039;</p><p> </p><p>If useful add it to /ect/rc.local properly ... ;)</p><p><br /></p><p><span>With Debian, the fix don&#039;t work, this one does ...<br /><br />/etc/rc.local</span><span><br /><br />rmmod ehci_pci &amp;&amp; rmmod ehci_hcd &amp;&amp; modprobe uhci_hcd</span><br /></p>
+        </div>
+    </body>
+</html>

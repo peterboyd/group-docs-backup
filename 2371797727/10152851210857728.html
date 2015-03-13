@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Command to show info about hardware device (in this case VGA card) and kernel it uses</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Command to show info about hardware device (in this case VGA card) and kernel it uses
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>lspci -nnks $(lspci | grep VGA | awk &#039;&#123;print $1&#125;&#039;)</p><p><br />If you change &quot;VGA&quot; part with some other like &quot;Ethernet&quot; you can get info about different device.</p><p><br />Command &quot;lspci&quot; shows all hw devices in the system. <br /></p><p><br /></p><p>First in row is &quot;ID number&quot; that you can use with &quot;-s&quot; switch to print only about that device. <br /></p><p>Switches &quot;-nnk&quot; will show details about all or only selected device including kernel module used. <br /></p><p>So &quot;lspci -nnks &quot; will show you details about specific device.<br /></p><br />
+        </div>
+    </body>
+</html>

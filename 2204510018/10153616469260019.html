@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Useful for troubleshooting</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Useful for troubleshooting
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p>cat /etc/lsb-release<br />lsusb<br />lspci<br />lspci -nn | grep -i net<br />lspci -k<br />sudo lshw -C network<br />lsmod<br />iwconfig<br />ifconfig<br />sudo iwlist scan<br />uname -r -m <br />cat  /etc/network/interfaces<br />nm-tool<br />sudo rfkill list<strong><br /></strong></p><p><strong><br /></strong></p><p><strong>cat /etc/lsb-release</strong> indique la version d&#039;Ubuntu que vous utilisez (Gutsy, Feisty... mais aussi l&#039;achitecture du noyau : 32 ou 64 bits)<br /></p><p><br /></p><p><strong>lsusb</strong> indique la liste du matériel branché sur vos ports USB</p><p><br /></p><p><strong>lspci</strong> indique la liste du matériel branché sur vos ports PCI</p><p><br /></p><p><strong>sudo lshw -C network</strong> indique la liste du matériel ayant un rapport avec le réseau</p><p><br /></p><p><strong>lsmod</strong> liste les modules chargés (prise en charge des ports USB, de la souris, du clavier, mais évidemment aussi de la carte/clé wi-fi)</p><p><br /></p><p><strong>iwconfig</strong> donne la liste des interfaces wi-fi actives</p><p><br /></p><p><strong>ifconfig</strong> donne la liste de toutes les interfaces réseau</p><p><br /></p><p><strong>sudo iwlist scan</strong> donne la liste des réseaux qui peuvent être scanné par le matériel wi-fi</p><p><br /></p><p><strong>cat  /etc/network/interfaces</strong> indique le contenu du fichier de configuration des interfaces réseau</p><p><br /></p><p><strong>nm-tool</strong> donne des renseignements sur <a href="#" role="button">NetworkManager</a></p><p><a href="#" role="button"><br /></a></p><p><strong>uname -r -m </strong>donne la version du noyau que vous utilisez ainsi que la platefrome materielle (32bits/64bits/ppc)</p><p><br /></p><p><strong>sudo rfkill list</strong> indique l&#039;état allumé/éteint logiciel et matériel des différentes interfaces wifi</p><p><br /></p><p>lspci -n then give the output of <span>kmuto.jp/<b>debian</b>/<b>hcl</b>/</span></p>
+        </div>
+    </body>
+</html>

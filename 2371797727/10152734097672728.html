@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Working samba config</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    </head>
+    <body>
+        <b>TITLE OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px 50px;">
+             Working samba config
+        </div>
+
+        <b>CONTENT OF THE DOCUMENT (just copy/paste it):</b>
+        <div style="border: 2px solid; padding: 10px; margin: 10px 50px;">
+            <p><b><u>Note:</u></b> This is SAMBA config I used on one server. I am posting it here because it works for sure, so you can test your own servers when in doubt.<br /><b><u>Note: </u></b>I do not wouch that these settings are good, secure, etc., all I am saying is that it works in protected network.<br /><b><u>Note: </u></b>You can modify only most necessary items and test if it works for you. When you see it works, then change one setting at the time, restart samba, check, and if it works change another setting.<br /><br />[global]<br />    log file = /var/log/samba/log.%m<br />    netbios name = server<br />    guest account = nobody<br />    netbios aliases = linux<br />    writeable = yes<br />    server string = Server<br />    log level = audit:3<br />    sync always = yes<br />    workgroup = VODOREMONT<br />    guest ok = yes<br />    os level = 20<br />    auto services = global homes printers<br />    username map = /etc/samba/smbusers<br />    encrypt passwords = yes<br />    security = share<br />    passdb backend = tdbsam<br />    max log size = 50<br />    wins support = true<br />;    allow hosts = 192.168.1.0/24<br />;    cups options = raw<br />;    load printers = yes<br />;    restrict anonymous = 0<br />;    null passwords = no<br />;       ----------<br />;       -----------<br />;    username map = /etc/samba/smbusers<br /><br /><br />[homes]<br />    comment = Home Directories<br />    browseable = yes<br />    writable = yes<br />;    valid users = %S<br />;    valid users = MYDOMAIN\%S<br />    <br />[printers]<br />    comment = All Printers<br />    path = /var/spool/samba<br />    browseable = yes<br />    guest ok = yes<br />    writable = no<br />    printable = yes<br />    <br />[d-disk]<br />    browseable = yes<br />    guest ok = yes<br />;    guest account = tanja<br />    writeable = yes<br />    delete readonly = yes<br />    public = yes<br />    path = /extra<br />    sync always = yes<br />    read only = no<br /></p><br /><br />
+        </div>
+    </body>
+</html>
