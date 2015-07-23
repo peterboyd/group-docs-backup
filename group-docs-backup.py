@@ -1,4 +1,4 @@
-#! /usr/bin/python2
+#! /usr/bin/python
 # -*- coding: utf-8 -*-
 #
 #    group-docs-backup.py - The main application.
@@ -73,7 +73,7 @@ GROUPS_ID = ('2204510018','228135853929943','2371797727') # Linux, Linux (tech s
 APP_ID = '205214459571218'
 APP_NAME = "Group Docs Backup"
 ACCESS_TOKEN = None
-AUTH_SCOPE = ['user_groups', 'offline_access']
+AUTH_SCOPE = ['user_groups']
 
 SERVER_IP = "127.0.0.1"
 SERVER_PORT = 8080
